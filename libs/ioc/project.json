@@ -1,0 +1,39 @@
+{
+  "name": "ioc",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/ioc/src",
+  "projectType": "library",
+  "release": {
+    "version": {
+      "generatorOptions": {
+        "packageRoot": "dist\\{projectRoot}",
+        "currentVersionResolver": "git-tag"
+      }
+    }
+  },
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/ioc",
+        "main": "libs/ioc/src/index.ts",
+        "tsConfig": "libs/ioc/tsconfig.lib.json",
+        "assets": ["libs/ioc/*.md"]
+      }
+    },
+    "nx-release-publish": {
+      "options": {
+        "packageRoot": "dist\\{projectRoot}"
+      }
+    },
+    "test": {
+      "executor": "@nx/vite:test",
+      "outputs": ["{options.reportsDirectory}"],
+      "options": {
+        "reportsDirectory": "../../coverage/libs/ioc"
+      }
+    }
+  }
+}
